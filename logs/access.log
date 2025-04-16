@@ -1,0 +1,46 @@
+[2025-04-15T20:05:32.096Z] [INFO] Server running on port 5000 {}
+[2025-04-15T20:05:36.830Z] [INFO] MongoDB connected successfully {}
+[2025-04-15T20:06:01.200Z] [INFO] POST /api/auth/register {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.22000.2538"}
+[2025-04-15T20:06:01.776Z] [INFO] POST /api/auth/login {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.22000.2538"}
+[2025-04-15T20:06:38.415Z] [INFO] POST /api/auth/login {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.22000.2538"}
+[2025-04-15T20:06:38.876Z] [INFO] POST /api/auth/register {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.22000.2538"}
+[2025-04-15T20:07:42.567Z] [INFO] Server running on port 5000 {}
+[2025-04-15T20:07:47.801Z] [INFO] MongoDB connected successfully {}
+[2025-04-15T20:07:58.723Z] [INFO] POST /api/auth/login {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.22000.2538"}
+[2025-04-15T20:08:00.007Z] [INFO] POST /api/auth/register {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.22000.2538"}
+[2025-04-15T20:08:00.933Z] [INFO] POST /api/auth/login {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.22000.2538"}
+[2025-04-15T20:08:01.807Z] [INFO] POST /api/auth/register {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.22000.2538"}
+[2025-04-15T20:08:02.780Z] [INFO] POST /api/auth/register {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.22000.2538"}
+[2025-04-15T20:10:54.271Z] [INFO] POST /api/auth/login {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:11:37.675Z] [INFO] GET /api/students?params[page]=1&params[limit]=10&params[sortField]=courseCode&params[sortDirection]=asc {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:11:37.683Z] [INFO] GET /api/students?params[page]=1&params[limit]=10&params[sortField]=courseCode&params[sortDirection]=asc {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:11:44.278Z] [INFO] POST /api/auth/login {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:11:47.372Z] [INFO] POST /api/auth/login {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:12:03.231Z] [INFO] POST /api/auth/login {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:12:11.578Z] [INFO] POST /api/auth/login {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:12:19.626Z] [INFO] POST /api/auth/login {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:12:23.619Z] [INFO] GET /api/students?params[page]=1&params[limit]=10&params[sortField]=courseCode&params[sortDirection]=asc {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:12:23.624Z] [INFO] GET /api/students?params[page]=1&params[limit]=10&params[sortField]=courseCode&params[sortDirection]=asc {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:22:10.806Z] [INFO] Server running on port 5000 {}
+[2025-04-15T20:22:16.760Z] [INFO] MongoDB connected successfully {}
+[2025-04-15T20:22:32.065Z] [INFO] Server running on port 5000 {}
+[2025-04-15T20:22:35.499Z] [INFO] MongoDB connected successfully {}
+[2025-04-15T20:23:14.434Z] [INFO] Server running on port 5000 {}
+[2025-04-15T20:23:18.610Z] [INFO] MongoDB connected successfully {}
+[2025-04-15T20:23:28.453Z] [INFO] Server running on port 5000 {}
+[2025-04-15T20:23:32.342Z] [INFO] MongoDB connected successfully {}
+[2025-04-15T20:24:01.649Z] [INFO] POST /api/auth/login {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:25:36.906Z] [INFO] GET /api/students?params[page]=1&params[limit]=10&params[sortField]=courseCode&params[sortDirection]=asc {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:25:37.775Z] [INFO] GET /api/students?params[page]=1&params[limit]=10&params[sortField]=courseCode&params[sortDirection]=asc {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:25:51.487Z] [INFO] GET /api/users?page=1&limit=10&sortField=username&sortDirection=asc {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:25:52.234Z] [INFO] GET /api/users?page=1&limit=10&sortField=username&sortDirection=asc {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:26:06.500Z] [INFO] POST /api/auth/logout {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:26:06.555Z] [INFO] GET /api/users?page=1&limit=10&sortField=username&sortDirection=asc {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:26:32.692Z] [INFO] POST /api/auth/login {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:26:41.467Z] [INFO] GET /api/students?params[page]=1&params[limit]=10&params[sortField]=courseCode&params[sortDirection]=asc {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:26:42.280Z] [INFO] GET /api/students?params[page]=1&params[limit]=10&params[sortField]=courseCode&params[sortDirection]=asc {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:26:49.380Z] [INFO] POST /api/auth/logout {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:27:16.404Z] [INFO] POST /api/auth/login {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:27:23.663Z] [INFO] GET /api/students?params[page]=1&params[limit]=10&params[sortField]=courseCode&params[sortDirection]=asc {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:27:24.469Z] [INFO] GET /api/students?params[page]=1&params[limit]=10&params[sortField]=courseCode&params[sortDirection]=asc {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
+[2025-04-15T20:27:38.749Z] [INFO] POST /api/auth/logout {"ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"}
