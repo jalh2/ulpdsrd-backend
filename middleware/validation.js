@@ -5,7 +5,7 @@
 
 // Validation helper functions
 const validateStudentRecord = (req, res, next) => {
-  const { studentId, studentName, courseCode, grade, instructor, yearCompleted, semester } = req.body;
+  const { studentId, studentName, courseCode, grade, numericGrade, instructor, yearCompleted, semester } = req.body;
   const errors = [];
 
   // Required fields validation
@@ -13,6 +13,7 @@ const validateStudentRecord = (req, res, next) => {
   if (!studentName) errors.push('Student name is required');
   if (!courseCode) errors.push('Course code is required');
   if (!grade) errors.push('Grade is required');
+  if (numericGrade === undefined || numericGrade === null) errors.push('Numeric grade is required');
   if (!instructor) errors.push('Instructor is required');
   if (!yearCompleted) errors.push('Year completed is required');
   if (!semester) errors.push('Semester is required');
@@ -26,8 +27,21 @@ const validateStudentRecord = (req, res, next) => {
     errors.push(`Year completed must be between 1950 and ${new Date().getFullYear()}`);
   }
 
-  if (semester && !['First', 'Second', 'Third'].includes(semester)) {
-    errors.push('Semester must be one of: First, Second, Third');
+  if (numericGrade !== undefined && numericGrade !== null) {
+    if (isNaN(numericGrade)) {
+      errors.push('Numeric grade must be a number');
+    } else if (numericGrade < 0 || numericGrade > 100) {
+      errors.push('Numeric grade must be between 0 and 100');
+    }
+  }
+
+  // Accept both string and numeric semester values
+  if (semester) {
+    const semesterStr = semester.toString();
+    // Check if semester is a valid value (First, Second, Third, 1, 2, 3)
+    if (!['First', 'Second', 'Third', '1', '2', '3', 1, 2, 3].includes(semesterStr)) {
+      errors.push('Semester must be one of: First, Second, Third, 1, 2, 3');
+    }
   }
 
   // Return errors if any

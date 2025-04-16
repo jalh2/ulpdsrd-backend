@@ -65,8 +65,7 @@ const UserSchema = new Schema({
 });
 
 // Create index for faster queries
-UserSchema.index({ username: 1 });
-UserSchema.index({ email: 1 });
+// Username and email already have unique: true which creates indexes automatically
 UserSchema.index({ userType: 1 });
 
 // Method to check if user is admin

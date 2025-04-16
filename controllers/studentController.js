@@ -104,6 +104,36 @@ exports.getRecordsByStudent = async (req, res) => {
 };
 
 /**
+ * Get a specific student record by ID
+ * @route GET /api/students/:id
+ */
+exports.getRecordById = async (req, res) => {
+  try {
+    const recordId = req.params.id;
+    
+    const record = await StudentRecord.findById(recordId);
+    
+    if (!record) {
+      return res.status(404).json({
+        success: false,
+        message: 'Student record not found'
+      });
+    }
+    
+    res.status(200).json({
+      success: true,
+      data: record
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error retrieving student record',
+      error: error.message
+    });
+  }
+};
+
+/**
  * Create a new student record
  * @route POST /api/students
  */
@@ -114,6 +144,7 @@ exports.createRecord = async (req, res) => {
       studentName, 
       courseCode, 
       grade, 
+      numericGrade,
       instructor, 
       yearCompleted, 
       semester 
@@ -132,16 +163,16 @@ exports.createRecord = async (req, res) => {
       });
     }
 
-    // Create new record
+    // Create new record with default values for missing fields
     const record = new StudentRecord({
-      studentId,
-      studentName,
-      courseCode,
-      grade,
-      instructor,
-      yearCompleted,
-      semester,
-      updatedBy: req.session.user.id
+      studentId: studentId || '',
+      studentName: studentName || '',
+      courseCode: courseCode || '',
+      grade: grade || '',
+      numericGrade: numericGrade !== undefined ? numericGrade : 70, // Default to 70 if missing
+      instructor: instructor || 'Unknown',
+      yearCompleted: yearCompleted || new Date().getFullYear(),
+      semester: semester || 'First'
     });
 
     await record.save();
@@ -172,10 +203,12 @@ exports.updateRecord = async (req, res) => {
       studentId, 
       studentName, 
       courseCode, 
-      grade, 
+      grade,
+      numericGrade,
       instructor, 
       yearCompleted, 
-      semester 
+      semester,
+      updatedBy
     } = req.body;
 
     // Find record
@@ -210,10 +243,12 @@ exports.updateRecord = async (req, res) => {
     record.studentName = studentName || record.studentName;
     record.courseCode = courseCode || record.courseCode;
     record.grade = grade || record.grade;
+    record.numericGrade = numericGrade !== undefined ? numericGrade : record.numericGrade;
     record.instructor = instructor || record.instructor;
     record.yearCompleted = yearCompleted || record.yearCompleted;
     record.semester = semester || record.semester;
-    record.updatedBy = req.session.user.id;
+    
+    // Don't update the updatedBy field, it will be handled by the timestamps
 
     await record.save();
 

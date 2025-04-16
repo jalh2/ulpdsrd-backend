@@ -9,28 +9,28 @@ const userController = require('../controllers/userController');
 const authMiddleware = require('../middleware/auth');
 const validationMiddleware = require('../middleware/validation');
 
-// All routes require admin access
-router.use(authMiddleware.isAdmin);
+// Remove admin access requirement for all routes
+// router.use(authMiddleware.isAdmin);
 
-// Get all users
+// Get all users (no authentication required)
 router.get('/', userController.getAllUsers);
 
-// Get a specific user by ID
+// Get a specific user by ID (no authentication required)
 router.get('/:id', userController.getUserById);
 
-// Create a new user
+// Create a new user (no authentication required)
 router.post('/', validationMiddleware.validateUser, userController.createUser);
 
-// Update a user
+// Update a user (no authentication required)
 router.put('/:id', validationMiddleware.validateUser, userController.updateUser);
 
-// Change user password
+// Change user password (no authentication required)
 router.put('/:id/password', validationMiddleware.validatePasswordChange, userController.changePassword);
 
-// Reset user password (generate a temporary password)
+// Reset user password (generate a temporary password) (no authentication required)
 router.post('/:id/reset-password', userController.resetPassword);
 
-// Delete a user
+// Delete a user (no authentication required)
 router.delete('/:id', userController.deleteUser);
 
 module.exports = router;

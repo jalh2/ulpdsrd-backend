@@ -9,42 +9,43 @@ const Schema = mongoose.Schema;
 const StudentRecordSchema = new Schema({
   studentId: {
     type: String,
-    required: [true, 'Student ID is required'],
     trim: true,
     index: true
   },
   studentName: {
     type: String,
-    required: [true, 'Student name is required'],
     trim: true
   },
   courseCode: {
     type: String,
-    required: [true, 'Course code is required'],
     trim: true,
     index: true
   },
   grade: {
     type: String,
-    required: [true, 'Grade is required'],
     trim: true
+  },
+  numericGrade: {
+    type: Number,
+    min: [0, 'Numeric grade cannot be less than 0'],
+    max: [100, 'Numeric grade cannot be more than 100'],
+    default: 70
   },
   instructor: {
     type: String,
-    required: [true, 'Instructor name is required'],
     trim: true
   },
   yearCompleted: {
     type: Number,
-    required: [true, 'Year completed is required'],
     min: [1950, 'Year must be after 1950'],
-    max: [new Date().getFullYear(), 'Year cannot be in the future']
+    max: [new Date().getFullYear(), 'Year cannot be in the future'],
+    default: () => new Date().getFullYear()
   },
   semester: {
     type: String,
-    required: [true, 'Semester is required'],
     enum: ['First', 'Second', 'Third'],
-    trim: true
+    trim: true,
+    default: 'First'
   },
   updatedBy: {
     type: Schema.Types.ObjectId,

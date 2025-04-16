@@ -9,25 +9,23 @@ const studentController = require('../controllers/studentController');
 const authMiddleware = require('../middleware/auth');
 const validationMiddleware = require('../middleware/validation');
 
-// Get all student records (all authenticated users)
-router.get('/', authMiddleware.isAuthenticated, studentController.getAllRecords);
+// Get all student records (no authentication required)
+router.get('/', studentController.getAllRecords);
 
-// Get student records by course (all authenticated users)
-router.get('/course/:courseCode', authMiddleware.isAuthenticated, studentController.getRecordsByCourse);
+// Get student records by course (no authentication required)
+router.get('/course/:courseCode', studentController.getRecordsByCourse);
 
-// Get student records by student ID (all authenticated users)
-router.get('/student/:studentId', authMiddleware.isAuthenticated, studentController.getRecordsByStudent);
+// Get student records by student ID (no authentication required)
+router.get('/student/:studentId', studentController.getRecordsByStudent);
 
-// Create a new student record (all authenticated users)
-router.post('/', 
-  authMiddleware.isAuthenticated, 
-  validationMiddleware.validateStudentRecord, 
-  studentController.createRecord
-);
+// Get a specific student record by ID (no authentication required)
+router.get('/:id', studentController.getRecordById);
 
-// Update a student record (chairman and admin only)
+// Create a new student record (no authentication or validation required)
+router.post('/', studentController.createRecord);
+
+// Update a student record (no authentication required, only validation)
 router.put('/:id', 
-  authMiddleware.canEditRecords, 
   validationMiddleware.validateStudentRecord, 
   studentController.updateRecord
 );
