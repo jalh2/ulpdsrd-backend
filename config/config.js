@@ -23,9 +23,10 @@ module.exports = {
   cors: {
     // Allow requests from these origins (comma-separated list in .env)
     // In development, default to localhost:3000 if not specified
+    // For production, include the deployed frontend URL
     origin: process.env.ALLOWED_ORIGINS ? 
       process.env.ALLOWED_ORIGINS.split(',') : 
-      ['http://localhost:3000'],
+      ['http://localhost:3000', 'https://ulpdsrd.web.app'],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
