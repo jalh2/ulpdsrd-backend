@@ -4,6 +4,7 @@
  */
 
 const User = require('../models/User');
+const ActivityLog = require('../models/ActivityLog');
 const cryptoUtil = require('../utils/crypto');
 const config = require('../config/config');
 
@@ -117,6 +118,23 @@ exports.login = async (req, res) => {
       userType: user.userType,
       name: user.name
     };
+    
+    // Log login activity
+    try {
+      const activityLog = new ActivityLog({
+        user: user._id,
+        username: user.name || user.username,
+        userType: user.userType,
+        action: 'LOGIN',
+        details: { timestamp: new Date() },
+        ipAddress: req.ip || req.connection.remoteAddress
+      });
+      
+      await activityLog.save();
+    } catch (logError) {
+      console.error('Error logging login activity:', logError);
+      // Continue even if logging fails
+    }
 
     res.status(200).json({
       success: true,
@@ -181,19 +199,48 @@ exports.getProfile = async (req, res) => {
  * Logout user
  * @route POST /api/auth/logout
  */
-exports.logout = (req, res) => {
-  req.session.destroy(err => {
-    if (err) {
-      return res.status(500).json({
-        success: false,
-        message: 'Error during logout',
-        error: err.message
-      });
+exports.logout = async (req, res) => {
+  try {
+    // Log logout activity if user is in session
+    if (req.session && req.session.user) {
+      try {
+        const activityLog = new ActivityLog({
+          user: req.session.user.id,
+          username: req.session.user.name || req.session.user.username,
+          userType: req.session.user.userType,
+          action: 'LOGOUT',
+          details: { timestamp: new Date() },
+          ipAddress: req.ip || req.connection.remoteAddress
+        });
+        
+        await activityLog.save();
+      } catch (logError) {
+        console.error('Error logging logout activity:', logError);
+        // Continue even if logging fails
+      }
     }
+    
+    // Destroy session
+    req.session.destroy(err => {
+      if (err) {
+        return res.status(500).json({
+          success: false,
+          message: 'Error during logout',
+          error: err.message
+        });
+      }
 
-    res.status(200).json({
-      success: true,
-      message: 'Logout successful'
+      res.status(200).json({
+        success: true,
+        message: 'Logout successful'
+      });
     });
-  });
+  } catch (error) {
+    console.error('Error during logout:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error during logout',
+      error: error.message
+    });
+  }
 };

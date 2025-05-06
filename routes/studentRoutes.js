@@ -6,6 +6,7 @@
 const express = require('express');
 const router = express.Router();
 const studentController = require('../controllers/studentController');
+const bulkUploadController = require('../controllers/bulkUploadController');
 const authMiddleware = require('../middleware/auth');
 const validationMiddleware = require('../middleware/validation');
 
@@ -24,6 +25,9 @@ router.get('/:id', studentController.getRecordById);
 // Create a new student record (no authentication or validation required)
 router.post('/', studentController.createRecord);
 
+// Bulk upload student records
+router.post('/bulk-upload', bulkUploadController.bulkUploadRecords);
+
 // Update a student record (no authentication required, only validation)
 router.put('/:id', 
   validationMiddleware.validateStudentRecord, 
@@ -32,5 +36,8 @@ router.put('/:id',
 
 // Delete a student record (admin only)
 router.delete('/:id', authMiddleware.isAdmin, studentController.deleteRecord);
+
+// Delete all student records (admin only)
+router.delete('/all', authMiddleware.isAdmin, bulkUploadController.deleteAllRecords);
 
 module.exports = router;

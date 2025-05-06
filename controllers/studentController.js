@@ -20,17 +20,66 @@ exports.getAllRecords = async (req, res) => {
 
     // Filtering
     const filter = {};
-    if (req.query.courseCode) filter.courseCode = req.query.courseCode;
-    if (req.query.studentId) filter.studentId = req.query.studentId;
-    if (req.query.instructor) filter.instructor = req.query.instructor;
+    
+    // Log the incoming query parameters for debugging
+    console.log('Search parameters:', req.query);
+    
+    // Helper function to create safe regex patterns
+    const createSafeRegex = (term) => {
+      const escapedTerm = term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+      return new RegExp(escapedTerm, 'i');
+    };
+    
+    // Handle text-based searches with consistent regex approach
+    if (req.query.courseCode) {
+      filter.courseCode = { $regex: createSafeRegex(req.query.courseCode) };
+      console.log('Searching for course code:', req.query.courseCode);
+    }
+    
+    if (req.query.studentId) {
+      filter.studentId = { $regex: createSafeRegex(req.query.studentId) };
+      console.log('Searching for student ID:', req.query.studentId);
+    }
+    
+    if (req.query.studentName) {
+      filter.studentName = { $regex: createSafeRegex(req.query.studentName) };
+      console.log('Searching for student name:', req.query.studentName);
+    }
+    
+    if (req.query.instructor) {
+      filter.instructor = { $regex: createSafeRegex(req.query.instructor) };
+      console.log('Searching for instructor:', req.query.instructor);
+    }
+    
+    // For grade, year, and semester, use exact matching as these are typically dropdown selections
+    if (req.query.grade) filter.grade = req.query.grade;
     if (req.query.yearCompleted) filter.yearCompleted = parseInt(req.query.yearCompleted);
     if (req.query.semester) filter.semester = req.query.semester;
+    
+    // Log the constructed filter for debugging
+    console.log('MongoDB filter:', JSON.stringify(filter, null, 2));
 
-    // Execute query with pagination
+    // Sorting
+    const sortOptions = {};
+    if (req.query.sortField) {
+      sortOptions[req.query.sortField] = req.query.sortDirection === 'desc' ? -1 : 1;
+    } else {
+      sortOptions.yearCompleted = -1;
+      sortOptions.semester = 1;
+    }
+
+    // Execute query with pagination and sorting
     const records = await StudentRecord.find(filter)
-      .sort({ yearCompleted: -1, semester: 1 })
+      .sort(sortOptions)
       .skip(skip)
       .limit(limit);
+      
+    // Log the records found for debugging
+    console.log(`Found ${records.length} records matching the filter`);
+    if (req.query.studentName) {
+      console.log('Records with matching names:');
+      records.forEach(record => console.log(`- ${record.studentName}`));
+    }
 
     // Get total count for pagination
     const total = await StudentRecord.countDocuments(filter);
