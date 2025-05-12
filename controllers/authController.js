@@ -140,6 +140,7 @@ exports.login = async (req, res) => {
       success: true,
       message: 'Login successful',
       data: {
+        _id: user._id, // Include the user ID needed for activity logging
         username: user.username,
         userType: user.userType,
         name: user.name,
@@ -180,6 +181,7 @@ exports.getProfile = async (req, res) => {
     res.status(200).json({
       success: true,
       data: {
+        _id: user._id, // Include the user ID needed for activity logging
         username: user.username,
         userType: user.userType,
         name: user.name,

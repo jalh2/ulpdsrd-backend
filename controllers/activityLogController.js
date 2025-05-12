@@ -3,6 +3,7 @@
  * Handles CRUD operations for activity logs
  */
 
+const mongoose = require('mongoose');
 const ActivityLog = require('../models/ActivityLog');
 const config = require('../config/config');
 
@@ -15,20 +16,27 @@ exports.createLog = async (req, res) => {
   try {
     const { user, username, userType, action, details, ipAddress } = req.body;
     
-    // Create new log
-    const log = new ActivityLog({
-      user,
+    // Create log data object
+    const logData = {
       username,
       userType,
       action,
       details: details || {},
       ipAddress
-    });
+    };
     
+    // Only include user ID if it's a valid MongoDB ObjectId
+    if (user && user !== 'unknown' && mongoose.Types.ObjectId.isValid(user)) {
+      logData.user = user;
+    } else {
+      console.log('Invalid or missing user ID in activity log, continuing without user reference');
+    }
+    
+    // Create and save the log
+    const log = new ActivityLog(logData);
     await log.save();
     
-    // Don't send response for log creation to improve performance
-    // Just return success status
+    // Return success status
     res.status(201).json({
       success: true,
       message: 'Activity log created successfully'

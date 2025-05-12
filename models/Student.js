@@ -21,6 +21,10 @@ const StudentRecordSchema = new Schema({
     trim: true,
     index: true
   },
+  courseName: {
+    type: String,
+    trim: true
+  },
   grade: {
     type: String,
     trim: true
@@ -47,9 +51,19 @@ const StudentRecordSchema = new Schema({
     trim: true,
     default: 'First'
   },
+  session: {
+    type: String,
+    trim: true,
+    default: ''
+  },
   updatedBy: {
     type: Schema.Types.ObjectId,
     ref: 'User'
+  },
+  editedBy: {
+    type: String,
+    trim: true,
+    default: ''
   }
 }, {
   timestamps: true // Automatically adds createdAt and updatedAt fields

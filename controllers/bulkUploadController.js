@@ -38,11 +38,13 @@ exports.bulkUploadRecords = async (req, res) => {
         if (existingRecord) {
           // Update existing record
           existingRecord.studentName = item.studentName || existingRecord.studentName;
+          existingRecord.courseName = item.courseName || existingRecord.courseName;
           existingRecord.grade = item.grade || existingRecord.grade;
           existingRecord.numericGrade = item.numericGrade !== undefined ? item.numericGrade : existingRecord.numericGrade;
           existingRecord.instructor = item.instructor || existingRecord.instructor;
           existingRecord.yearCompleted = item.yearCompleted || existingRecord.yearCompleted;
           existingRecord.semester = item.semester || existingRecord.semester;
+          existingRecord.session = item.session || existingRecord.session;
           existingRecord.updatedBy = item.updatedBy || existingRecord.updatedBy;
 
           await existingRecord.save();
@@ -60,11 +62,13 @@ exports.bulkUploadRecords = async (req, res) => {
             studentId: item.studentId || '',
             studentName: item.studentName || '',
             courseCode: item.courseCode || '',
+            courseName: item.courseName || '',
             grade: item.grade || '',
             numericGrade: item.numericGrade !== undefined ? item.numericGrade : 70,
             instructor: item.instructor || 'Unknown',
             yearCompleted: item.yearCompleted || new Date().getFullYear(),
             semester: item.semester || 'First',
+            session: item.session || '',
             updatedBy: item.updatedBy
           });
 

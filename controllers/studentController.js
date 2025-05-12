@@ -192,11 +192,13 @@ exports.createRecord = async (req, res) => {
       studentId, 
       studentName, 
       courseCode, 
+      courseName,
       grade, 
       numericGrade,
       instructor, 
       yearCompleted, 
-      semester 
+      semester,
+      session 
     } = req.body;
 
     // Check for existing record with same student and course
@@ -217,11 +219,13 @@ exports.createRecord = async (req, res) => {
       studentId: studentId || '',
       studentName: studentName || '',
       courseCode: courseCode || '',
+      courseName: courseName || '',
       grade: grade || '',
       numericGrade: numericGrade !== undefined ? numericGrade : 70, // Default to 70 if missing
       instructor: instructor || 'Unknown',
       yearCompleted: yearCompleted || new Date().getFullYear(),
-      semester: semester || 'First'
+      semester: semester || 'First',
+      session: session || ''
     });
 
     await record.save();
@@ -252,12 +256,15 @@ exports.updateRecord = async (req, res) => {
       studentId, 
       studentName, 
       courseCode, 
+      courseName,
       grade,
       numericGrade,
       instructor, 
       yearCompleted, 
       semester,
-      updatedBy
+      session,
+      updatedBy,
+      editedBy
     } = req.body;
 
     // Find record
@@ -291,13 +298,23 @@ exports.updateRecord = async (req, res) => {
     record.studentId = studentId || record.studentId;
     record.studentName = studentName || record.studentName;
     record.courseCode = courseCode || record.courseCode;
+    record.courseName = courseName || record.courseName;
     record.grade = grade || record.grade;
     record.numericGrade = numericGrade !== undefined ? numericGrade : record.numericGrade;
     record.instructor = instructor || record.instructor;
     record.yearCompleted = yearCompleted || record.yearCompleted;
     record.semester = semester || record.semester;
+    record.session = session || record.session;
     
-    // Don't update the updatedBy field, it will be handled by the timestamps
+    // Update the updatedBy field with the current user's information
+    if (updatedBy) {
+      record.updatedBy = updatedBy;
+    }
+    
+    // Update the editedBy field with the current user's name
+    if (editedBy) {
+      record.editedBy = editedBy;
+    }
 
     await record.save();
 

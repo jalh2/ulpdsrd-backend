@@ -10,7 +10,7 @@ const ActivityLogSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: false // Make user reference optional to allow system-generated logs
   },
   username: {
     type: String,
